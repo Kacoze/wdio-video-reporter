@@ -138,7 +138,10 @@ var helpers = {
   },
 
   generateVideo() {
-    const videoPath = path.resolve(config.outputDir, this.testname + '.mp4');
+    const videoPath = path.resolve(
+      config.outputDir + this.testname.split(0, this.testname.indexOf('--')),
+      this.testname.split(this.testname.indexOf('--') + 2) + '.mp4'
+    );
     this.videos.push(videoPath);
 
     if (config.usingAllure) {
@@ -446,9 +449,8 @@ class Video extends WdioReporter {
       config.outputDir = options.logFile ? path.dirname(options.logFile) : config.outputDir;
     }
     if(config.outputDir.length > 1) {
-      config.outputDir  = config.outputDir.replace(/[\/|\\]$/, '');
+      config.outputDir = config.outputDir.replace(/[\/|\\]$/, '');
     }
-
     config.saveAllVideos = options.saveAllVideos || config.saveAllVideos;
     config.videoSlowdownMultiplier = options.videoSlowdownMultiplier || config.videoSlowdownMultiplier;
     config.videoRenderTimeout = options.videoRenderTimeout || config.videoRenderTimeout;

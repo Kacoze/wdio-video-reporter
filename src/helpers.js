@@ -54,8 +54,8 @@ export default {
 
   generateVideo() {
     const videoPath = path.resolve(
-      config.outputDir + this.testname.split(0, this.testname.indexOf("--")),
-      this.testname.split(this.testname.indexOf("--") + 2) + '.mp4'
+      config.outputDir + this.testname.split(0, this.testname.indexOf('--')),
+      this.testname.split(this.testname.indexOf('--') + 2) + '.mp4'
     );
     this.videos.push(videoPath);
 
